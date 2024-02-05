@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('competences');
-            $table->enum('contract', ['à distance', 'hybrid', 'à temps plein'])->default(' temps plein');
+            $table->enum('contract', ['à distance', 'hybrid', 'à temps plein'])->default('temps plein');
             $table->string('emplacement');
         });
     }
