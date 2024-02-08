@@ -1,12 +1,51 @@
 <x-guest-layout>
+    <a href="{{route('auth.user_register')}}" >User</a>
+    <a href="{{route('auth.entreprise_register')}}" >Entreprise</a>
+
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+            <input class="hidden" name="role" value="{{$role}}">
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- Name -->
+        <div>
+            <x-input-label for="Entreprise Name" :value="__('Entreprise Name')" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('entrname')" class="mt-2" />
+        </div>
+
+        <!-- logo -->
+        <div>
+            <x-input-label for="Logo" :value="__('Logo')" />
+            <x-text-input id="logo" class="block mt-1 w-full" type="file" name="logo" :value="old('logo')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+        </div>
+
+        <!-- slogan -->
+        <div>
+            <x-input-label for="Slogan" :value="__('Slogan')" />
+            <x-text-input id="Slogan" class="block mt-1 w-full" type="text" name="Slogan" :value="old('Slogan')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('Slogan')" class="mt-2" />
+        </div>
+
+        <!-- industrie -->
+        <div>
+            <x-input-label for="Industrie" :value="__('Industrie')" />
+            <x-text-input id="industrie" class="block mt-1 w-full" type="text" name="industrie" :value="old('industrie')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('industrie')" class="mt-2" />
+        </div>
+
+        <!-- description -->
+        <div>
+            <x-input-label for="Description" :value="__('Description')" />
+            <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

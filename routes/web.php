@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\entrepriseController;
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -27,5 +32,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/home', [homeController::class, 'index'])->name('home');
+
+Route::get('/user', [userController::class, 'index'])->middleware('user');
+Route::get('/admin', [adminController::class, 'index'])->middleware('admin');
+Route::get('/entreprise', [entrepriseController::class, 'index'])->middleware('entreprise');
+
+Route::get('/user_register', [RegisteredUserController::class, 'create'])->name('auth.user_register');
+
+Route::get('/entreprise_register', [RegisteredUserController::class, 'createEntreprise'])->name('auth.entreprise_register');
+
+Route::get('/cv', [userController::class, 'cv'])->name('user.cv');
+Route::get('/offres', [entrepriseController::class, 'offres'])->name('entreprise.offres');
 
 require __DIR__.'/auth.php';

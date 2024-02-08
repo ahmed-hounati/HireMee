@@ -20,7 +20,12 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('auth.user_register', ['role' => 'user']);
+    }
+
+    public function createEntreprise(): View
+    {
+        return view('auth.entreprise_register', ['role' => 'entreprise']);
     }
 
     /**
@@ -40,6 +45,12 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'picture' => $request->picture,
+            'title' => $request->title,
+            'post' => $request->post,
+            'industrie'=> $request->industrie,
+            'about' => $request->about,
         ]);
 
         event(new Registered($user));

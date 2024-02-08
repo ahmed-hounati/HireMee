@@ -17,10 +17,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+    const ROLE_USER = 'user';
+    const ROLE_ENTREPRISE = 'entreprise';
+    const ROLE_ADMIN = 'admin';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'title',
+        'about',
+        'phone',
+        'post',
+        'address',
+        'logo',
+        'slogan',
+        'industries',
+        'description',
+
     ];
 
     /**
@@ -39,7 +55,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 }

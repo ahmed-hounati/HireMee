@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('emploi', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title');
             $table->string('description');
-            $table->string('competences');
-            $table->enum('contract', ['à distance', 'hybrid', 'à temps plein'])->default('temps plein');
+            $table->json('competences');
+            $table->enum('contract', ['à distance', 'hybrid', 'à temps plein'])->default('à temps plein');
             $table->string('emplacement');
         });
     }
