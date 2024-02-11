@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('emploi', function (Blueprint $table) {
+        Schema::create('emplois', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('title');
-            $table->string('description');
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->json('competences');
             $table->enum('contract', ['à distance', 'hybrid', 'à temps plein'])->default('à temps plein');
-            $table->string('emplacement');
+            $table->string('emplacement')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -39,19 +39,33 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'title' => 'nullable|string|max:255',
+            'post' => 'nullable|string|max:255',
+            'industrie' => 'nullable|string|max:255',
+            'about' => 'nullable|string|max:500',
+            'picture' => 'required',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'picture' => $request->picture,
-            'title' => $request->title,
-            'post' => $request->post,
-            'industrie'=> $request->industrie,
-            'about' => $request->about,
-        ]);
+
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $imagePath = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('picture'), $imagePath);
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->post = $request->post;
+        $user->industries = $request->industries;
+        $user->about = $request->about;
+
+        $user->picture = $imagePath;
+
+
+        $user->save();
 
         event(new Registered($user));
 

@@ -14,7 +14,7 @@ class homeController extends Controller
             if ($role === 'user') {
                 return view('user.dashboard');
             } elseif ($role === 'entreprise') {
-                return view('entreprise.dashboard');
+                return view('entreprise.home');
             } else if ($role === 'admin') {
                 return view('admin.dashboard');
             }

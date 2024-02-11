@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+              integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Scripts -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -40,7 +43,7 @@
                 @if (auth()->user()->role === 'entreprise')
                     <header class="bg-white dark:bg-gray-800 shadow">
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                            <a class="text-white text-3xl" href="{{route('entreprise.offres')}}">
+                            <a class="text-white text-3xl" href="{{route('entreprise.emplois.all')}}">
                                 Les offres d'emploi
                             </a>
                         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\cvController;
 use App\Http\Controllers\entrepriseController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,14 @@ Route::get('/user_register', [RegisteredUserController::class, 'create'])->name(
 Route::get('/entreprise_register', [RegisteredUserController::class, 'createEntreprise'])->name('auth.entreprise_register');
 
 Route::get('/cv', [userController::class, 'cv'])->name('user.cv');
-Route::get('/offres', [entrepriseController::class, 'offres'])->name('entreprise.offres');
+
+Route::get('/entreprise/emplois/all', [entrepriseController::class, 'index'])->name('entreprise.emplois.all');
+Route::get('/entreprise/emplois/create', [entrepriseController::class, 'create'])->name('entreprise.emplois.create');
+Route::post('/entreprise/emplois/create', [entrepriseController::class, 'store'])->name('entreprise.emplois.creat');
+Route::get('/entreprise/emplois/{emploi}/edit', [entrepriseController::class, 'edit'])->name('entreprise.emplois.edit');
+Route::patch('/entreprise/emplois/{emploi}', [entrepriseController::class, 'update'])->name('entreprise.emploisupdate');
+Route::delete('/entreprise/emplois/{emploi}', [entrepriseController::class, 'destroy'])->name('entreprise.emplois.delete');
+
+Route::post('/cv', [cvController::class, 'store'])->name('cv');
 
 require __DIR__.'/auth.php';
