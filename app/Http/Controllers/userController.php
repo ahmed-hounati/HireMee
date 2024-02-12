@@ -10,8 +10,4 @@ class userController extends Controller
     {
         return view('user.dashboard');
     }
-    public function cv()
-    {
-        return view('user.cv');
-    }
 }

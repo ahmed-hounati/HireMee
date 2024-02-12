@@ -43,7 +43,7 @@ Route::get('/user_register', [RegisteredUserController::class, 'create'])->name(
 
 Route::get('/entreprise_register', [RegisteredUserController::class, 'createEntreprise'])->name('auth.entreprise_register');
 
-Route::get('/cv', [userController::class, 'cv'])->name('user.cv');
+
 
 Route::get('/entreprise/emplois/all', [entrepriseController::class, 'index'])->name('entreprise.emplois.all');
 Route::get('/entreprise/emplois/create', [entrepriseController::class, 'create'])->name('entreprise.emplois.create');
@@ -52,6 +52,7 @@ Route::get('/entreprise/emplois/{emploi}/edit', [entrepriseController::class, 'e
 Route::patch('/entreprise/emplois/{emploi}', [entrepriseController::class, 'update'])->name('entreprise.emploisupdate');
 Route::delete('/entreprise/emplois/{emploi}', [entrepriseController::class, 'destroy'])->name('entreprise.emplois.delete');
 
-Route::post('/cv', [cvController::class, 'store'])->name('cv');
+Route::get('/cv', [cvController::class, 'create'])->name('user.cv');
+Route::post('/cv', [cvController::class, 'store'])->name('user.cv');
 
 require __DIR__.'/auth.php';

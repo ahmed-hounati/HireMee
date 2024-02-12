@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cv', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cvs', function (Blueprint $table) {
             $table->json('compet');
             $table->json('experiences');
             $table->json('cursus');
             $table->json('langues');
             $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
         });
     }
 
