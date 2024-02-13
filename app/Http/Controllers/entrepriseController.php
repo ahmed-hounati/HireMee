@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidature;
 use App\Models\Emploi;
 use Illuminate\Http\Request;
 
@@ -100,4 +101,23 @@ class entrepriseController extends Controller
         return to_route('entreprise.emplois.all');
     }
 
+    public function jobs()
+    {
+        $offers = Emploi::all();
+        $user_id = auth()->user()->id;
+
+        $offersWithApplicationStatus = $offers
+            ->map(function ($offer) use ($user_id) {
+                $hasApplied = Candidature::where('user_id', $user_id)
+                    ->where('emploi_id', $offer->id)
+                    ->exists();
+
+                return [
+                    'offer' => $offer,
+                    'hasApplied' => $hasApplied,
+                ];
+            });
+
+        return view('user.emplois', ['offers' => $offersWithApplicationStatus]);
+    }
 }

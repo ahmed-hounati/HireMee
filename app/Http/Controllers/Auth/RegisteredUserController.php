@@ -28,13 +28,9 @@ class RegisteredUserController extends Controller
         return view('auth.entreprise_register', ['role' => 'entreprise']);
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -45,6 +41,7 @@ class RegisteredUserController extends Controller
             'about' => 'nullable|string|max:500',
             'picture' => 'required',
         ]);
+
 
 
         if ($request->hasFile('picture')) {

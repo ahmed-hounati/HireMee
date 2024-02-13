@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cv;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class cvController extends Controller
@@ -70,9 +71,16 @@ class cvController extends Controller
 
         $user = $cv->user;
 
+        $pdf = Pdf::loadView('user.show', ['cv' => $cv, 'user' => $user]);
 
-        return view('user.show', ['cv' => $cv, 'user' => $user]);
+        # Option 1) Show the PDF in the browser
+        return $pdf->stream();
+
+        # Option 2) Download the PDF
+        // return $pdf->download('invoice.pdf');
     }
+
+
 
 
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\candidateurController;
 use App\Http\Controllers\cvController;
 use App\Http\Controllers\entrepriseController;
 use App\Http\Controllers\homeController;
@@ -55,5 +56,10 @@ Route::delete('/entreprise/emplois/{emploi}', [entrepriseController::class, 'des
 Route::get('/cv', [cvController::class, 'create'])->name('user.cv');
 Route::post('/cv', [cvController::class, 'store'])->name('user.cv');
 Route::get('/show', [cvController::class, 'show'])->name('user.show');
+
+Route::get('/emplois', [entrepriseController::class, 'jobs'])->name('user.emplois');
+
+Route::post('/postuler/{emploi}', [candidateurController::class, 'store'])->name('user.postuler');
+
 
 require __DIR__.'/auth.php';

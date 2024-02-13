@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="ml-32 text-white border border-gray-300 rounded-sm shadow-lg py-10 px-10 w-4/5 mt-10 mb-10">
+    <div class="ml-32 text-white border border-gray-300 rounded-sm shadow-lg py-10 px-10 w-4/5 mt-10 ">
         <!-- header (profile) -->
         <header>
             <div class="flex justify-between items-center">
@@ -21,13 +21,12 @@
                 <strong class="text-xl font-medium">Contact Details</strong>
                 <ul class="mt-2 mb-10">
                     <li class="px-2 mt-1"><strong class="mr-1">Phone </strong>
-                        <a href="tel:+821023456789" class="block">+82 10 2345 6789</a>
+                        <a href="tel:+821023456789" class="block">{{$user->phone}}</a>
                     </li>
                     <li class="px-2 mt-1"><strong class="mr-1">E-mail </strong>
-                        <a href="mailto:" class="block">aspiringfe@helloworld.com</a>
+                        <a href="mailto:" class="block">{{$user->email}}</a>
                     </li>
-                    <li class="px-2 mt-1"><strong class="mr-1">Location</strong><span class="block">Seoul,
-                            South Korea</span></li>
+                    <li class="px-2 mt-1"><strong class="mr-1">Location</strong><span class="block">{{$user->address}}</span></li>
                 </ul>
                 <!-- skills -->
                 <strong class="text-xl font-medium">Skills</strong>
@@ -42,15 +41,7 @@
                 <section>
                     <!-- about me -->
                     <h2 class="text-2xl pb-1 border-b font-semibold">About</h2>
-                    <p class="mt-4 text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus
-                        deserunt modi qui. Dolorum aliquid quasi velit cupiditate officia magnam impedit, sapiente
-                        hic, eaque quaerat ullam fugiat reprehenderit voluptates odit! Error.
-                        Tempore fuga iusto eveniet omnis impedit repellat ab repellendus nesciunt similique. Iure
-                        voluptates, enim nesciunt tempora amet earum, porro rem ad et sequi corrupti neque quidem?
-                        Debitis quo quibusdam nemo.
-                        Nam doloremque perferendis tempora asperiores, ullam praesentium et, voluptas pariatur illo
-                        aliquid similique, fugiat repellendus ipsa necessitatibus minus hic culpa quasi. Sed
-                        voluptate itaque accusantium earum cupiditate ipsa neque magnam!</p>
+                    <p class="mt-4 text-xs">{{$user->about}}</p>
 
                 </section>
 
