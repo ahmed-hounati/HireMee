@@ -85,7 +85,7 @@
         function addInput() {
             var newInput = document.createElement("input");
             newInput.type = "text";
-            newInput.name = "competences[]";
+            newInput.name = "compet[]";
             newInput.className =
                 " bg-gray-800 block mt-1 w-full";
             newInput.placeholder = "competences";

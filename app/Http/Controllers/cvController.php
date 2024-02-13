@@ -61,5 +61,18 @@ class cvController extends Controller
         return redirect()->route('home');
     }
 
+    public function show(){
+        $cv = Cv::where('user_id', auth()->id())->firstorfail();
+        $cv->compet = json_decode($cv->compet, true);
+        $cv->experiences = json_decode($cv->experiences, true);
+        $cv->cursus = json_decode($cv->cursus, true);
+        $cv->langues = json_decode($cv->langues, true);
+
+        $user = $cv->user;
+
+
+        return view('user.show', ['cv' => $cv, 'user' => $user]);
+    }
+
 
 }

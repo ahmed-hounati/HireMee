@@ -54,5 +54,6 @@ Route::delete('/entreprise/emplois/{emploi}', [entrepriseController::class, 'des
 
 Route::get('/cv', [cvController::class, 'create'])->name('user.cv');
 Route::post('/cv', [cvController::class, 'store'])->name('user.cv');
+Route::get('/show', [cvController::class, 'show'])->name('user.show');
 
 require __DIR__.'/auth.php';
