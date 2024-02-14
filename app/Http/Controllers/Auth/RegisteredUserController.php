@@ -40,6 +40,10 @@ class RegisteredUserController extends Controller
             'industrie' => 'nullable|string|max:255',
             'about' => 'nullable|string|max:500',
             'picture' => 'required',
+            'address'=> 'nullable|string|max:255',
+            'slogan'=> 'nullable|string|max:255',
+            'industries'=> 'nullable|string|max:255',
+            'description'=> 'nullable|string|max:255',
         ]);
 
 
@@ -58,6 +62,11 @@ class RegisteredUserController extends Controller
         $user->post = $request->post;
         $user->industries = $request->industries;
         $user->about = $request->about;
+        $user->address = $request->address;
+        $user->slogan = $request->slogan;
+        $user->industries = $request->industries;
+        $user->description = $request->description;
+
 
         $user->picture = $imagePath;
 

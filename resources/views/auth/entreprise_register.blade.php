@@ -3,7 +3,7 @@
     <a href="{{route('auth.entreprise_register')}}" >Entreprise</a>
 
 
-    <form method="POST" action="{{ route('register') }}">
+    <form class="mt-6" method="POST" action="{{route('auth.entreprise_register')}}" enctype="multipart/form-data">
         @csrf
             <input class="hidden" name="role" value="{{$role}}">
         <!-- Name -->
@@ -16,14 +16,14 @@
         <!-- Name -->
         <div>
             <x-input-label for="Entreprise Name" :value="__('Entreprise Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('entrname')" class="mt-2" />
         </div>
 
         <!-- logo -->
         <div>
             <x-input-label for="Logo" :value="__('Logo')" />
-            <x-text-input id="logo" class="block mt-1 w-full" type="file" name="logo" :value="old('logo')" required autofocus autocomplete="name" />
+            <x-text-input id="logo" class="block mt-1 w-full" type="file" name="picture" :value="old('picture')" required autofocus />
             <x-input-error :messages="$errors->get('logo')" class="mt-2" />
         </div>
 

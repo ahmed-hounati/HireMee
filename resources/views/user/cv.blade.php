@@ -7,15 +7,18 @@
 
                 <!-- competences -->
                 @foreach($cv->compet as $oneCv)
-                <div class="flex items-center gap-2">
-                    <div class="flex-grow">
-                        <x-input-label for="competences" :value="__('competences')" />
-                        <x-text-input id="competences" class="block mt-1 w-full" type="text" name="compet[]" :value="$oneCv"  required autofocus  />
+                    <div class="container">
+                        <div class="flex items-center gap-2">
+                            <div class="flex-grow">
+                                <x-input-label for="competences" :value="__('competences')" />
+                                <x-text-input id="competences" class="block mt-1 w-full" type="text" name="compet[]" :value="$oneCv"  required autofocus  />
 
-                        <x-input-error :messages="$errors->get('competences')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('competences')" class="mt-2" />
+                            </div>
+                            <a id="addInputButton" class="bg-blue-500 mt-4 text-white p-2 rounded-full"><i class="fa-solid fa-plus"></i></a>
+                            <a class="removeButton bg-red-500 mt-4 text-white p-2 rounded-full"><i class="fa-solid fa-minus"></i></a>
+                        </div>
                     </div>
-                    <a id="addInputButton" class="bg-blue-500 mt-4 text-white p-2 rounded-full"><i class="fa-solid fa-plus"></i></a>
-                </div>
                 @endforeach
 
                 @csrf
@@ -52,7 +55,7 @@
                         <x-text-input id="langues" class="block mt-1 w-full" type="text" name="langues[]" :value="$oneCv" required autofocus  />
                         <x-input-error :messages="$errors->get('langues')" class="mt-2" />
                     </div>
-                    <a id="addLangues" class="bg-blue-500 mt-4 text-white p-2 rounded-full"><i class="fa-solid fa-plus"></i></a>
+                    <a id="addLangues" class="bg-blue-500 mt-4 text-white p-2 rounded-full"><i class="fa-solid fa-plus"></i></a>>
                 </div>
                 @endforeach
 
@@ -65,6 +68,14 @@
     </div>
 
     <script>
+
+        document.addEventListener('click', function(event) {
+            const isRemoveButton = event.target.classList.contains('removeButton');
+
+            if (isRemoveButton) {
+                event.target.closest('.container').remove();
+            }
+        });
 
         document.getElementById("addInputButton").addEventListener("click", function() {
             addInput();

@@ -15,5 +15,4 @@ class candidateurController extends Controller
         return to_route('user.emplois');
     }
 
-
 }

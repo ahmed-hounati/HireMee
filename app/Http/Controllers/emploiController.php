@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Candidature;
 use App\Models\Emploi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class entrepriseController extends Controller
+class emploiController extends Controller
 {
     public function index()
     {
@@ -119,5 +120,35 @@ class entrepriseController extends Controller
             });
 
         return view('user.emplois', ['offers' => $offersWithApplicationStatus]);
+    }
+
+    public function seeApplications(Emploi $emploi)
+    {
+        $applications = Candidature::where('candidatures.emploi_id', $emploi->id)
+            ->join('users', 'users.id', '=', 'candidatures.user_id')
+            ->get();
+
+        return view('entreprise.emplois.allApplications', compact('emploi', 'applications'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $offers = Emploi::where('title', 'like', '%' . $query . '%')
+            ->orWhere('description', 'like', '%' . $query . '%')
+            ->orWhere('contract', 'like', '%' . $query . '%')
+            ->orWhere('emplacement', 'like', '%' . $query . '%')
+            ->get();
+
+        $appliedOffers = Candidature::where('user_id',Auth::id())->get()->pluck('emploi_id')->toArray();
+
+        /*The idea here is to have a $offers are a list of job offers that match the search query, and each offer holds
+        another value: if the user has applied to that offer, 'true', if not, 'false' */
+
+        $offers = $offers->map(function ($offer) use($appliedOffers) {
+            return ['offer'=>$offer,'hasApplied'=>in_array($offer->id,$appliedOffers)];
+        });
+
+        return view('user.emplois',compact('offers'));
     }
 }

@@ -52,6 +52,8 @@
                         <a href="{{$offer->id}}/edit"
                            class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"><i
                                 class="fa-solid fa-pen-clip fa-xl"></i></a>
+                        <a href="allApplication/{{$offer->id}}"
+                           class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">see the applications</a>
                         <form method="post" action="{{$offer->id}}">
                             @csrf
                             @method('DELETE')
