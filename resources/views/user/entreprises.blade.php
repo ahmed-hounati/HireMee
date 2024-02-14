@@ -27,6 +27,23 @@
                             <span class="text-sm text-gray-700 dark:text-gray-200">{{$entreprise->email}}</span>
                             <p class="text-sm text-gray-700 dark:text-gray-200">{{$entreprise->description}}</p>
                         </div>
+                            @if(session('error'))
+                                <div class="bg-red-500 text-white p-3 mb-2">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('status'))
+                                <div class="bg-green-500 text-white p-3 mb-2">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
+                            <form action="{{ route('subscribe') }}" method="POST">
+                                @csrf
+                                <input type="email" name="email" required>
+                                <button type="submit">Subscribe to newsletter</button>
+                            </form>
                     </div>
                 @endforeach
             </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\newsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,5 +70,7 @@ Route::get('/emplois/search', [emploiController::class, 'search'])->name('emploi
 Route::get('/entreprises', [userController::class, 'getAllEntreprises'])->name('user.entreprises');
 
 Route::get('/entreprise/search', [userController::class, 'search'])->name('user.entreprise');
+
+Route::post('/subscribe', [newsletterController::class, 'subscribe'])->name('subscribe');
 
 require __DIR__.'/auth.php';
