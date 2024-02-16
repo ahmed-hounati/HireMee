@@ -18,4 +18,5 @@ class newsletterController extends Controller
         Newsletter::subscribe($request->email);
         return redirect()->back()->with('status', 'Thanks for your subscription!');
     }
+
 }

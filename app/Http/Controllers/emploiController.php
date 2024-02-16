@@ -151,4 +151,12 @@ class emploiController extends Controller
 
         return view('user.emplois',compact('offers'));
     }
+
+    public function archive($id)
+    {
+            $enterprise = Emploi::findOrFail($id);
+            $enterprise->delete();
+
+            return back()->with('status', 'Job archived successfully');
+    }
 }

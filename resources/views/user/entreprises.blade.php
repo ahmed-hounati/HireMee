@@ -15,7 +15,6 @@
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
                 @foreach($entreprises as $entreprise)
                     <div class="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -23,27 +22,10 @@
                             <img class="object-cover w-full h-56" src="{{ asset('picture/' . $entreprise->picture) }}" alt="avatar">
                         @endif
                         <div class="py-5 text-center">
-                            <h1 class="block text-xl font-bold text-gray-800 dark:text-white" tabindex="0" role="link">{{ $entreprise->title }}</h1>
+                            <a href="entreprise/{{$entreprise->id}}" class="block text-xl font-bold text-gray-800 dark:text-white" tabindex="0" role="link">{{ $entreprise->title }}</a>
                             <span class="text-sm text-gray-700 dark:text-gray-200">{{$entreprise->email}}</span>
                             <p class="text-sm text-gray-700 dark:text-gray-200">{{$entreprise->description}}</p>
                         </div>
-                            @if(session('error'))
-                                <div class="bg-red-500 text-white p-3 mb-2">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
-                            @if(session('status'))
-                                <div class="bg-green-500 text-white p-3 mb-2">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            <form action="{{ route('subscribe') }}" method="POST">
-                                @csrf
-                                <input type="email" name="email" required>
-                                <button type="submit">Subscribe to newsletter</button>
-                            </form>
                     </div>
                 @endforeach
             </div>

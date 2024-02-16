@@ -40,7 +40,7 @@
                         <a class="text-white text-2xl" href="{{route('user.show')}}">
                             show
                         </a>
-                        <a class="text-white text-2xl" href="">
+                        <a class="text-white text-2xl" href="{{route('user.download')}}">
                             download
                         </a>
                         <a class="text-white text-2xl" href="{{route('user.entreprises')}}">
@@ -58,6 +58,24 @@
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                             <a class="text-white text-3xl" href="{{route('entreprise.emplois.all')}}">
                                 Les offres d'emploi
+                            </a>
+                        </div>
+                    </header>
+                @endif
+
+                @if (auth()->user()->role === 'admin')
+                    <header class="bg-white dark:bg-gray-800 shadow">
+                        <div class="max-w-7xl flex justify-between	 gap-6 mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                            <a class="text-white text-3xl" href="{{route('admin.dashboard')}}">
+                                statistics
+                            </a>
+
+                            <a class="text-white text-3xl" href="{{route('admin.entreprises')}}">
+                                All entreprises
+                            </a>
+
+                            <a class="text-white text-3xl" href="{{route('admin.users')}}">
+                                All users
                             </a>
                         </div>
                     </header>

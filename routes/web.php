@@ -58,6 +58,7 @@ Route::delete('/entreprise/emplois/{emploi}', [emploiController::class, 'destroy
 Route::get('/cv', [cvController::class, 'create'])->name('user.cv');
 Route::post('/cv', [cvController::class, 'store'])->name('user.cv');
 Route::get('/show', [cvController::class, 'show'])->name('user.show');
+Route::get('/download', [cvController::class, 'download'])->name('user.download');
 
 Route::get('/emplois', [emploiController::class, 'jobs'])->name('user.emplois');
 
@@ -72,5 +73,11 @@ Route::get('/entreprises', [userController::class, 'getAllEntreprises'])->name('
 Route::get('/entreprise/search', [userController::class, 'search'])->name('user.entreprise');
 
 Route::post('/subscribe', [newsletterController::class, 'subscribe'])->name('subscribe');
+Route::get('/entreprise/{entreprise}', [userController::class, 'entreprise'])->name('user.oneEntreprise');
 
+Route::get('/home', [userController::class, 'statistics'])->name('admin.dashboard');
+Route::get('/entreprises', [userController::class, 'allEntreprises'])->name('admin.entreprises');
+Route::get('/users', [userController::class, 'allUsers'])->name('admin.users');
+Route::post('/archive/{user}', [userController::class, 'archive'])->name('admin.users.archive');
+Route::post('/archive/{entreprise}', [userController::class, 'archive'])->name('admin.entreprises.archive');
 require __DIR__.'/auth.php';

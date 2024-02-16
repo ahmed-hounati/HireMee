@@ -1,23 +1,27 @@
 <x-guest-layout>
-    <a href="{{route('auth.user_register')}}" >User</a>
-    <a href="{{route('auth.entreprise_register')}}" >Entreprise</a>
+    <div class="flex items-center">
+        <a href="{{ route('auth.user_register') }}" class="inline-block px-4 py-2 m-2 bg-blue-500 text-white rounded hover:bg-blue-700">User</a>
+
+        <a href="{{ route('auth.entreprise_register') }}" class="inline-block px-4 py-2 m-2 bg-green-500 text-white rounded hover:bg-green-700">Entreprise</a>
+    </div>
 
 
     <form class="mt-6" method="POST" action="{{route('auth.entreprise_register')}}" enctype="multipart/form-data">
         @csrf
             <input class="hidden" name="role" value="{{$role}}">
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
 
         <!-- Name -->
         <div>
             <x-input-label for="Entreprise Name" :value="__('Entreprise Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('entrname')" class="mt-2" />
+        </div>
+
+        <!-- title -->
+        <div>
+            <x-input-label for="Title" :value="__('Title')" />
+            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus  />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 
         <!-- logo -->

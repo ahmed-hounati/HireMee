@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Candidature extends Model
 {
     use HasFactory;
+
+    public function emploi()
+    {
+        return $this->belongsTo(Emploi::class, 'emploi_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 }

@@ -59,7 +59,7 @@ class cvController extends Controller
 
         Cv::updateOrCreate(['user_id' => $userId], $cvData);
 
-        return redirect()->route('home');
+        return redirect()->route('user.cv');
     }
 
     public function show(){
@@ -71,13 +71,17 @@ class cvController extends Controller
 
         $user = $cv->user;
 
-        $pdf = Pdf::loadView('user.show', ['cv' => $cv, 'user' => $user]);
+        return View('user.show', ['cv' => $cv, 'user' => $user]);
 
-        # Option 1) Show the PDF in the browser
-        return $pdf->stream();
+    }
 
-        # Option 2) Download the PDF
-        // return $pdf->download('invoice.pdf');
+    public function download()
+    {
+        $cv = CV::where('user_id', auth()->id())->firstOrFail();
+
+        $pdf = Pdf::loadView('user.pdf', compact('cv'));
+
+        return $pdf->download('cv.pdf');
     }
 
 
