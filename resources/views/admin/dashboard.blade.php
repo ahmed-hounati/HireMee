@@ -2,6 +2,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                @if(auth()->user()->role === 'admin')
+
 
                 <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
@@ -24,15 +26,12 @@
                                     <dt class="mb-2 text-3xl font-extrabold">{{ $stats['totalJobOffers'] }}</dt>
                                     <dd class="text-gray-500 dark:text-gray-400">Jobs</dd>
                                 </div>
-                                <div class="flex flex-col items-center justify-center">
-                                    <dt class="mb-2 text-3xl font-extrabold">{{ $stats['mostAppliedJob'] }}</dt>
-                                    <dd class="text-gray-500 dark:text-gray-400">Most applied job</dd>
-                                </div>
                             </dl>
                         </div>
                         </div>
                     </div>
                 </div>
+            @endif
             </div>
         </div>
 </x-app-layout>

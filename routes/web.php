@@ -48,36 +48,32 @@ Route::post('/entreprise_register', [RegisteredUserController::class, 'store'])-
 
 
 
-Route::get('/entreprise/emplois/all', [emploiController::class, 'index'])->name('entreprise.emplois.all');
-Route::get('/entreprise/emplois/create', [emploiController::class, 'create'])->name('entreprise.emplois.create');
-Route::post('/entreprise/emplois/create', [emploiController::class, 'store'])->name('entreprise.emplois.creat');
-Route::get('/entreprise/emplois/{emploi}/edit', [emploiController::class, 'edit'])->name('entreprise.emplois.edit');
-Route::patch('/entreprise/emplois/{emploi}', [emploiController::class, 'update'])->name('entreprise.emploisupdate');
-Route::delete('/entreprise/emplois/{emploi}', [emploiController::class, 'destroy'])->name('entreprise.emplois.delete');
+Route::get('/entreprise/emplois/all', [emploiController::class, 'index'])->middleware('entreprise')->name('entreprise.emplois.all');
+Route::get('/entreprise/emplois/create', [emploiController::class, 'create'])->middleware('entreprise')->name('entreprise.emplois.create');
+Route::post('/entreprise/emplois/create', [emploiController::class, 'store'])->middleware('entreprise')->name('entreprise.emplois.creat');
+Route::get('/entreprise/emplois/{emploi}/edit', [emploiController::class, 'edit'])->middleware('entreprise')->name('entreprise.emplois.edit');
+Route::patch('/entreprise/emplois/{emploi}', [emploiController::class, 'update'])->middleware('entreprise')->name('entreprise.emploisupdate');
+Route::delete('/entreprise/emplois/{emploi}', [emploiController::class, 'destroy'])->middleware('entreprise')->name('entreprise.emplois.delete');
+Route::get('entreprise/emplois/allApplication/{emploi}', [emploiController::class, 'seeApplications'])->middleware('entreprise')->name('entreprise.emplois.allApplications');
 
-Route::get('/cv', [cvController::class, 'create'])->name('user.cv');
-Route::post('/cv', [cvController::class, 'store'])->name('user.cv');
-Route::get('/show', [cvController::class, 'show'])->name('user.show');
-Route::get('/download', [cvController::class, 'download'])->name('user.download');
 
-Route::get('/emplois', [emploiController::class, 'jobs'])->name('user.emplois');
 
-Route::post('/postuler/{emploi}', [candidateurController::class, 'store'])->name('user.postuler');
+Route::get('/cv', [cvController::class, 'create'])->middleware('user')->name('user.cv');
+Route::post('/cv', [cvController::class, 'store'])->middleware('user')->name('user.cv');
+Route::get('/show', [cvController::class, 'show'])->middleware('user')->name('user.show');
+Route::get('/download', [cvController::class, 'download'])->middleware('user')->name('user.download');
+Route::get('/emplois', [emploiController::class, 'jobs'])->middleware('user')->name('user.emplois');
+Route::post('/postuler/{emploi}', [candidateurController::class, 'store'])->middleware('user')->name('user.postuler');
+Route::get('/user/entreprises', [userController::class, 'getAllEntreprises'])->middleware('user')->name('user.entreprises');
+Route::get('/entreprise/search', [userController::class, 'search'])->middleware('user')->name('user.entreprise');
+Route::post('/subscribe', [newsletterController::class, 'subscribe'])->middleware('user')->name('subscribe');
+Route::get('/entreprise/{entreprise}', [userController::class, 'entreprise'])->middleware('user')->name('user.oneEntreprise');
 
-Route::get('entreprise/emplois/allApplication/{emploi}', [emploiController::class, 'seeApplications'])->name('entreprise.emplois.allApplications');
 
-Route::get('/emplois/search', [emploiController::class, 'search'])->name('emplois.search');
 
-Route::get('/entreprises', [userController::class, 'getAllEntreprises'])->name('user.entreprises');
-
-Route::get('/entreprise/search', [userController::class, 'search'])->name('user.entreprise');
-
-Route::post('/subscribe', [newsletterController::class, 'subscribe'])->name('subscribe');
-Route::get('/entreprise/{entreprise}', [userController::class, 'entreprise'])->name('user.oneEntreprise');
-
-Route::get('/home', [userController::class, 'statistics'])->name('admin.dashboard');
-Route::get('/entreprises', [userController::class, 'allEntreprises'])->name('admin.entreprises');
-Route::get('/users', [userController::class, 'allUsers'])->name('admin.users');
-Route::post('/archive/{user}', [userController::class, 'archive'])->name('admin.users.archive');
-Route::post('/archive/{entreprise}', [userController::class, 'archive'])->name('admin.entreprises.archive');
+Route::get('/home', [userController::class, 'statistics'])->middleware('admin')->name('admin.dashboard');
+Route::get('/entreprises', [userController::class, 'allEntreprises'])->middleware('admin')->name('admin.entreprises');
+Route::get('/users', [userController::class, 'allUsers'])->middleware('admin')->name('admin.users');
+Route::post('/archive/{user}', [userController::class, 'archive'])->middleware('admin')->name('admin.users.archive');
+Route::post('/archive/{entreprise}', [userController::class, 'archive'])->middleware('admin')->name('admin.entreprises.archive');
 require __DIR__.'/auth.php';
